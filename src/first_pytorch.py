@@ -1,3 +1,11 @@
+#-*- coding: utf-8 -*-
+
+'''
+File: first_pytorch.py
+Author: Collin Farquhar
+Description: First implementation of a pytorch NN
+'''
+
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -7,6 +15,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
+
+
+a = 1
 # load CIFAR10 image dataset and transfors to range [-1. 1] 
 transform = transforms.Compose(
     [transforms.ToTensor(),
