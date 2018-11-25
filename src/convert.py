@@ -62,13 +62,13 @@ def main():
     
     # Run the model in TensorFlow
     print('Image 1:')
-    img = Image.open('assets/two.png').resize((28, 28)).convert('L')
+    img = Image.open('assets_two.png').resize((28, 28)).convert('L')
     display(img)
     output = tf_rep.run(np.asarray(img, dtype=np.float32)[np.newaxis, np.newaxis, :, :])
     print('The digit is classified as ', np.argmax(output))
 
     print('Image 2:')
-    img = Image.open('assets/three.png').resize((28, 28)).convert('L')
+    img = Image.open('assets_three.png').resize((28, 28)).convert('L')
     display(img)
     output = tf_rep.run(np.asarray(img, dtype=np.float32)[np.newaxis, np.newaxis, :, :])
     print('The digit is classified as ', np.argmax(output))
