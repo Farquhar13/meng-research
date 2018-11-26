@@ -15,6 +15,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
+'''
+will want to change this import to an argument, possible
+The PyTorch class is required, but a solution without hardcoding would be
+prefered
+'''
 from torchNet import Net
 
 import onnx
@@ -36,6 +41,8 @@ torch.onnx.export(trained_model, dummy_input, "output_mnist.onnx")
 def main():
     
     '''
+    # passing, as argument, Pytorch Net class would be desired
+
     parser = argparse.ArgumentParser(description='model converter from PyTorch
             to TensorFlow using onnx ')
     parser.add_argument("net_class", help"")
