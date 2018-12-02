@@ -10,5 +10,4 @@ Investigate the effects of masking on sparse features
 
 
 Advised by Dr. Valentin Kuznetsov
-￼
 https://github.com/vkuznet/MLaaS4HEP
