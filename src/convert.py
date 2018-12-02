@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+#pylint: disable=
+
 '''
 File: convert.py
 Author: Collin Farquhar
@@ -9,6 +13,7 @@ https://github.com/onnx/tutorials/blob/master/tutorials/PytorchTensorflowMnist.i
 '''
 
 import argparse
+import os
 
 import torch
 import torch.nn as nn
@@ -29,28 +34,31 @@ import numpy as np
 from IPython.display import display
 from PIL import Image
 
+class OptionParser():
+    def __init__(self):
+        "User based option parser"
+        self.parser = argparse.ArgumentParser(prog='PROG')
+        self.parser.add_argument("--ptorch", action="store",
+            dest="ptorch", default="", help="Input PyTorch file")
+        self.parser.add_argument("--onnx", action="store",
+            dest="onnx", default="", help="Output ONNX file")
+        self.parser.add_argument("--fout", action="store",
+            dest="fout", default="", help="Output TF file")
+        self.parser.add_argument("--imgs", action="store",
+            dest="imgs", default="", help="Comma separated list of images (for testing purposes)")
 
-# Load the trained model from file
-trained_model = Net()
-trained_model.load_state_dict(torch.load('output_mnist.pth'))
 
-# Export the trained model to ONNX
-dummy_input = Variable(torch.randn(1, 1, 28, 28)) # one black and white 28 x 28 picture will be the input to the model
-torch.onnx.export(trained_model, dummy_input, "output_mnist.onnx")
+def run(ptorch, fonnx, tout, imgs=[]):
+    # Load the trained model from file
+    trained_model = Net()
+    trained_model.load_state_dict(torch.load(ptorch))
 
-def main():
-    
-    '''
-    # passing, as argument, Pytorch Net class would be desired
-
-    parser = argparse.ArgumentParser(description='model converter from PyTorch
-            to TensorFlow using onnx ')
-    parser.add_argument("net_class", help"")
-    '''
-
+    # Export the trained model to ONNX
+    dummy_input = Variable(torch.randn(1, 1, 28, 28)) # one black and white 28 x 28 picture will be the input to the model
+    torch.onnx.export(trained_model, dummy_input, fonnx)
 
     # Load the ONNX file
-    model = onnx.load('output_mnist.onnx')
+    model = onnx.load(fonnx)
 
     # Import the ONNX model to Tensorflow
     tf_rep = prepare(model)
@@ -68,20 +76,24 @@ def main():
 
     
     # Run the model in TensorFlow
-    print('Image 1:')
-    img = Image.open('assets/two.png').resize((28, 28)).convert('L')
-    display(img)
-    output = tf_rep.run(np.asarray(img, dtype=np.float32)[np.newaxis, np.newaxis, :, :])
-    print('The digit is classified as ', np.argmax(output))
-
-    print('Image 2:')
-    img = Image.open('assets/three.png').resize((28, 28)).convert('L')
-    display(img)
-    output = tf_rep.run(np.asarray(img, dtype=np.float32)[np.newaxis, np.newaxis, :, :])
-    print('The digit is classified as ', np.argmax(output))
-
+    for img in imgs:
+        if not os.path.isfile(img):
+            continue
+        print('Image 1:')
+        img = Image.open(img).resize((28, 28)).convert('L')
+        display(img)
+        output = tf_rep.run(np.asarray(img, dtype=np.float32)[np.newaxis, np.newaxis, :, :])
+        print('The digit is classified as ', np.argmax(output))
     
-    tf_rep.export_graph('output_mnist.pb')
+    if tfout:
+        tf_rep.export_graph(tout)
+
+def main():
+    "Main function"
+    optmgr  = OptionParser()
+    opts = optmgr.parser.parse_args()
+    imgs = opts.imgs.split(',')
+    run(opts.ptorch, opts.onnx, opts.fout, imgs)
 
 if __name__ == '__main__':
     main()
