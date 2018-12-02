@@ -1,0 +1,22 @@
+12/2/18
+Virtualenv I was working in broke, have to set up another virtual environment 
+and reinstall everything.
+
+inside 3.6vev
+install TensorFlow -- done
+install PyTorch -- done
+install onnx -- done
+install onnx-tf -- done
+
+get convert_vk.py to run -- done
+
+bug fixes
+    import os needed
+
+    fixed naming discrepency with tfout / fout / tout
+
+I think convert.py may be working now!
+
+Should change the import of the PyTroch Net class used to train the model to an
+argparser argument. 
+
