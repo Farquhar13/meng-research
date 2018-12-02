@@ -42,13 +42,13 @@ class OptionParser():
             dest="ptorch", default="", help="Input PyTorch file")
         self.parser.add_argument("--onnx", action="store",
             dest="onnx", default="", help="Output ONNX file")
-        self.parser.add_argument("--fout", action="store",
-            dest="fout", default="", help="Output TF file")
+        self.parser.add_argument("--tfout", action="store",
+            dest="tfout", default="", help="Output TF file")
         self.parser.add_argument("--imgs", action="store",
             dest="imgs", default="", help="Comma separated list of images (for testing purposes)")
 
 
-def run(ptorch, fonnx, tout, imgs=[]):
+def run(ptorch, fonnx, tfout, imgs=[]):
     # Load the trained model from file
     trained_model = Net()
     trained_model.load_state_dict(torch.load(ptorch))
@@ -86,14 +86,14 @@ def run(ptorch, fonnx, tout, imgs=[]):
         print('The digit is classified as ', np.argmax(output))
     
     if tfout:
-        tf_rep.export_graph(tout)
+        tf_rep.export_graph(tfout)
 
 def main():
     "Main function"
     optmgr  = OptionParser()
     opts = optmgr.parser.parse_args()
     imgs = opts.imgs.split(',')
-    run(opts.ptorch, opts.onnx, opts.fout, imgs)
+    run(opts.ptorch, opts.onnx, opts.tfout, imgs)
 
 if __name__ == '__main__':
     main()
