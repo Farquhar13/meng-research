@@ -63,7 +63,6 @@ def run(ptorch, fonnx, tfout, imgs=[]):
     # Import the ONNX model to Tensorflow
     tf_rep = prepare(model)
 
-
     # Input nodes to the model
     print('inputs:', tf_rep.inputs)
 
@@ -74,7 +73,6 @@ def run(ptorch, fonnx, tfout, imgs=[]):
     print('tensor_dict:')
     print(tf_rep.tensor_dict)
 
-    
     # Run the model in TensorFlow
     for img in imgs:
         if not os.path.isfile(img):
