@@ -1,0 +1,42 @@
+Warnings when running convert.py
+
+Console output:
+/home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/common/handler_helper.py:71: UserWarning: Fail to get since_version of Acos in domain `` with max_inclusive_version=6. Set to 1.
+  handler.ONNX_OP, handler.DOMAIN, version))
+/home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/common/handler_helper.py:71: UserWarning: Fail to get since_version of Asin in domain `` with max_inclusive_version=6. Set to 1.
+  handler.ONNX_OP, handler.DOMAIN, version))
+/home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/common/handler_helper.py:71: UserWarning: Fail to get since_version of Atan in domain `` with max_inclusive_version=6. Set to 1.
+  handler.ONNX_OP, handler.DOMAIN, version))
+/home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/common/handler_helper.py:74: UserWarning: Unknown op ConstantLike in domain `ai.onnx`.
+  handler.ONNX_OP, handler.DOMAIN or "ai.onnx"))
+/home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/common/handler_helper.py:71: UserWarning: Fail to get since_version of Cos in domain `` with max_inclusive_version=6. Set to 1.
+  handler.ONNX_OP, handler.DOMAIN, version))
+/home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/common/handler_helper.py:71: UserWarning: Fail to get since_version of Expand in domain `` with max_inclusive_version=6. Set to 1.
+  handler.ONNX_OP, handler.DOMAIN, version))
+/home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/common/handler_helper.py:71: UserWarning: Fail to get since_version of Sin in domain `` with max_inclusive_version=6. Set to 1.
+  handler.ONNX_OP, handler.DOMAIN, version))
+/home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/common/handler_helper.py:71: UserWarning: Fail to get since_version of Tan in domain `` with max_inclusive_version=6. Set to 1.
+  handler.ONNX_OP, handler.DOMAIN, version))
+WARNING:tensorflow:From /home/farquhar13/3.6venv/lib/python3.6/site-packages/onnx_tf/handlers/backend/reshape.py:31: sparse_to_dense (from tensorflow.python.ops.sparse_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Create a `tf.sparse.SparseTensor` and use `tf.sparse.to_dense` instead.
+inputs: ['0']
+outputs: ['22']
+tensor_dict:
+{'1': <tf.Tensor 'Const:0' shape=(10, 1, 5, 5) dtype=float32>, '2': <tf.Tensor 'Const_1:0' shape=(10,) dtype=float32>, '3': <tf.Tensor 'Const_2:0' shape=(20, 10, 5, 5) dtype=float32>, '4': <tf.Tensor 'Const_3:0' shape=(20,) dtype=float32>, '5': <tf.Tensor 'Const_4:0' shape=(50, 320) dtype=float32>, '6': <tf.Tensor 'Const_5:0' shape=(50,) dtype=float32>, '7': <tf.Tensor 'Const_6:0' shape=(10, 50) dtype=float32>, '8': <tf.Tensor 'Const_7:0' shape=(10,) dtype=float32>, '0': <tf.Tensor '0:0' shape=(1, 1, 28, 28) dtype=float32>, '9': <tf.Tensor 'transpose_2:0' shape=(1, 10, 24, 24) dtype=float32>, '10': <tf.Tensor 'transpose_4:0' shape=(1, 10, 12, 12) dtype=float32>, '11': <tf.Tensor 'Relu:0' shape=(1, 10, 12, 12) dtype=float32>, '12': <tf.Tensor 'transpose_7:0' shape=(1, 20, 8, 8) dtype=float32>, '13': <tf.Tensor 'transpose_9:0' shape=(1, 20, 4, 4) dtype=float32>, '14': <tf.Tensor 'Relu_1:0' shape=(1, 20, 4, 4) dtype=float32>, '15': <tf.Tensor 'Const_14:0' shape=(2,) dtype=int64>, '16': <tf.Tensor 'Reshape:0' shape=(1, 320) dtype=float32>, '17': <tf.Tensor 'add_3:0' shape=(1, 50) dtype=float32>, '18': <tf.Tensor 'Relu_2:0' shape=(1, 50) dtype=float32>, '19': <tf.Tensor 'Relu_2:0' shape=(1, 50) dtype=float32>, '21': <tf.Tensor 'add_4:0' shape=(1, 10) dtype=float32>, '22': <tf.Tensor 'LogSoftmax:0' shape=(1, 10) dtype=float32>}
+
+
+
+-----------------------------------------------------------------------------------------------------
+Error 1: "Fail to get since_version of Acos in domain `` with max_inclusive_version=6. Set to 1"
+https://github.com/onnx/onnx-tensorflow/issues/246 
+Maybe harmless warnings. Version compatibility?
+
+Error 2: Unknown op ConstantLike in domain `ai.onnx`.
+Unknown or experiment operationg being used?
+https://github.com/onnx/onnx-tensorflow/issues/268
+
+Error 3: Create a `tf.sparse.SparseTensor` and use `tf.sparse.to_dense` instead.
+This is due to TensorFlow updating, but where do I change this function? It seems to go on in backend onnx conversion.
+
+Defualt onnx operators: https://github.com/onnx/onnx/blob/master/docs/Operators.md
