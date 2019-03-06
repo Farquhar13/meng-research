@@ -1,0 +1,22 @@
+Monday 
+    Goals:
+	-Benchmark DataGenerator class
+	-run reader.py
+        -understand code
+
+    Running DataGenerator gives “ModuleNotFoundError: No module named 'uproot'”
+        -Reading https://vsupalov.com/docker-arg-env-variable-guide/ and
+	-https://vsupalov.com/6-docker-basics/ to try to understand how docker builds environments
+	-watched 2 videos on docker https://www.youtube.com/watch?v=JBtWxj9l7zM
+
+Tuesday
+    Goal:
+        -Understand Docker containers
+
+    -Reading Docker documentation parts 1-3 https://docs.docker.com/get-started/   
+    -Watching 3 docker tutorial videos https://www.youtube.com/watch?v=pGYAg7TMmp0&list=PLoYCgNOIyGAAzevEST2qm2Xbe3aeLFvLc&index=1
+    -Reading post-installation steps https://docs.docker.com/install/linux/linux-postinstall/
+    -Running readme instructions from https://github.com/dmwm/CMSKubernetes/tree/master/docker
+    -Not able to run without sudo, last line “docker run hello-world” gives  “permission denied”
+        -Going to check stackoverflow tomorrow https://stackoverflow.com/questions/42164653/docker-in-docker-permissions-error 
+
