@@ -20,3 +20,19 @@ Tuesday
     -Not able to run without sudo, last line “docker run hello-world” gives  “permission denied”
         -Going to check stackoverflow tomorrow https://stackoverflow.com/questions/42164653/docker-in-docker-permissions-error 
 
+Wednesday
+    Goals: 
+        - Continue learning Docker
+	    - Fix Permission error so I can run without sudo --done
+	- Run cms readme instructions from https://github.com/dmwm/CMSKubernetes/tree/master/docker
+	- If docker stuff goes well, run reader.py
+	- If I get stuck, start working on math proof
+
+    - Fixed Permission error by restarting computer after following commands. Apparently loging 
+      out of docker and closing terminal wasn't enough
+    - Reading Docker documentation parts 1-4 https://docs.docker.com/get-started/
+        - Installing VM Virtual Box to continue with tutorial
+    - Investigating how to build dasgo image. Just copy Dockerfile? Navigate to directory somehow?
+    
+
+
