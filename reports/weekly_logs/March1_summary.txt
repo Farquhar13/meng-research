@@ -1,0 +1,32 @@
+What I did this week:
+    - Familiarized myself with Docker
+    - Set up and ran environment for MLaaS4HEP repository
+    - Ran reader.py
+    - Running reader.py using Tau data set gives 
+        "avg(flat)=5.2KB, avg(jagged)=13.4KB, ratio=0.39179188158779993
+	 Read 5 evts, 7.722405356758843 Hz, total time 0.6474666595458984"
+
+Issues:
+    - Running reader.py with fout argument gives
+
+  Traceback (most recent call last):
+  File "./reader.py", line 763, in <module>
+    main()
+  File "./reader.py", line 760, in main
+    parse(reader, nevts, verbose, fout, hists)
+  File "./reader.py", line 702, in parse
+    reader.write_specs(fout)
+  File "./reader.py", line 462, in write_specs
+    ostream.write(json.dumps(out))
+  File "/opt/conda/lib/python3.6/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "/opt/conda/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/opt/conda/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  TypeError: keys must be a string
+
+ Next steps:
+     - Benchmark DataGenerator class in reader.py to time transformation
+     - Begin researching "math part"
+

@@ -34,5 +34,26 @@ Wednesday
         - Installing VM Virtual Box to continue with tutorial
     - Investigating how to build dasgo image. Just copy Dockerfile? Navigate to directory somehow?
     
+Thursday
+    Goals:
+    	- Run MLaaS4HEP docker container
+        - Run reader.py
 
+    - Removed images and rebuilt MLaaS4HEP images
+    - Successfully ran MLaaS4HEP docker container!
+    - Command to run: docker run -v /tmp:/tmp -i -t farquhar13/mlaas4hep /bin/bash
 
+Friday
+    Goals:
+        - Run reader.py
+	- Benchmak DataGenerator class 
+
+        - Able to run reader.py!
+	- Running reader.py requires an input .root file. I have the Tau_run file, but it is not
+	available from within the docker container. I think I need to mount the directory
+	- Able to run with access to .root file!
+	- Docker command: docker run -v $PWD/data-vol:/tmp -i -t farquhar13/mlaas4hep /bin/bash this 
+	  mounts data-vol in my directory within MLaaS4HEP to /tmp in container (doesn't show up with
+	  ls, but still cd /tmp/ works)
+	- Error writing output in reader.py: "TypeError: keys must be a string" when writing with 
+	  json.dumps()
