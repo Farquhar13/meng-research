@@ -1,4 +1,4 @@
-# Cornell Applied and Engineering Physics Masters Research
+# Cornell Applied and Engineering Physics Masters Research (Fall 2018)
 Researching Neural Networks used for use at CERN CMS
 
 ## Goals: 
